@@ -1,9 +1,16 @@
 {
   "devDependencies": {
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "semver": "^7.6.0"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "husky": {
+      "hooks": {
+          "pre-commit": "sh .husky/pre-commit"
+      }
   }
+  
+  }
+  
 }

@@ -1,4 +1,6 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-sh ./increment-version.sh
+# Increment version number
+version=$(cat version.txt)
+new_version=$(echo $version + 0.01 | bc)
+echo $new_version > version.txt
+git add version.txt
