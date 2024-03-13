@@ -7,7 +7,7 @@ services:
       args:
         - NO_CACHE=1
     ports:
-      - "8080:8080"
+      - "7860:7860"
     command: python src/main.py
   publish2hub:
     build: 

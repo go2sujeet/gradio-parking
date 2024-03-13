@@ -39,4 +39,4 @@ with gr.Blocks() as app:
 
 
 if __name__ == "__main__":
-    app.launch(server_port=8080, debug=True, server_name="0.0.0.0")
+    app.launch(server_port=7860, debug=True, server_name="0.0.0.0")
