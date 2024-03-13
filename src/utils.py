@@ -1,7 +1,8 @@
 import time
 from data_classes import Event, TimeWindow
-import datetime
 import json
+from datetime import datetime
+data = None
 
 def twenty_four_hours_bucket_time_series_by_minute(valid_events:list[Event],target_date:datetime)->(list[int],list[list[Event]]): # type: ignore
     #create a pre defined time window for 24 hours by minute precision
@@ -56,9 +57,12 @@ def find_max_continuous_sequence(x):
     return (max_element, start, end)
 
 def loadDataFromJson():
-    with open('data/events.json') as f:
-        data = json.load(f)
+    global data
+    if data is None:
+        with open('data/events.json') as f:
+            data = json.load(f)
     return data
+
 
 def filter_event_by_date_facility_id(event:Event,target_date:datetime, facility_id:int):
     if event.facility_id == facility_id: 
@@ -66,3 +70,11 @@ def filter_event_by_date_facility_id(event:Event,target_date:datetime, facility_
             return True
     else:
         return False
+
+def get_all_entrance_dates()->list[datetime]:
+    data = loadDataFromJson()
+    return [datetime.fromisoformat(event['entrance_time']) for event in data]
+
+def get_all_facility_ids()->list[int]:
+    data = loadDataFromJson()
+    return list(set([event['facility_id'] for event in data]))
