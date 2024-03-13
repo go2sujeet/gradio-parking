@@ -13,5 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ src/
 COPY data/ data/
 
+#Expose the port
+EXPOSE 8080
+
 # Set the entry point command
 CMD ["python", "src/main.py"]
