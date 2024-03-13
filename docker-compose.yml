@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  gradio-parking:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NO_CACHE=1
+    ports:
+      - "8080:8080"
+    command: python src/main.py
+  publish2hub:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: go2sujeet/my-gradio-parking:latest

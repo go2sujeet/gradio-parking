@@ -4,5 +4,10 @@ run_local:
 	python src/main.py
 build_docker_image:
 	docker build -t my-gradio-parking . --no-cache
+publish_docker_image:
+	docker-compose build publish2hub
+	docker push go2sujeet/my-gradio-parking:latest
+
 run_docker_image:
-	docker run -p 8080:8080 my-gradio-parking
+	docker-compose up
+
