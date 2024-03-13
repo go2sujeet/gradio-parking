@@ -39,4 +39,4 @@ with gr.Blocks() as app:
 
 
 if __name__ == "__main__":
-    app.launch()
+    app.launch(server_port=8080, debug=True,inbrowser = True)
