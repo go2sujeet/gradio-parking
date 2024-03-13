@@ -9,3 +9,8 @@ services:
     ports:
       - "7860:7860"
     command: python src/main.py
+  publish2hub:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: go2sujeet/my-gradio-parking:latest
