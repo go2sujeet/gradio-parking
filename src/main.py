@@ -24,16 +24,18 @@ print("Most number of slots at the same time is {}".format(result[1]))
 #problem 2
 print("Most occupied window is between {} and {} with {} occupied spots".format(result[0][0],result[0][1],result[1]))
 
-def greet(name):
-    return "Hello " + name + "!"
+def process1(target_date, target_facility_id):
+    result = find_most_occupied_window(target_date, target_facility_id) 
+    return "Most occupied window is between {} and {} with {} occupied spots".format(result[0][0],result[0][1],result[1])
 
 with gr.Blocks() as app:
     with gr.Group():
-        target_date = Calendar(label="Target Date", default_value=datetime.now())
-        target_facility_id = gr.Number(label="Facility ID")
+        target_date = Calendar(label="Target Date",value=target_date)
+        target_facility_id = gr.Number(label="Facility ID", value=target_facility_id)
         btn_1 = gr.Button(value="Find Most Occupied Window")
     output1 = gr.Text(label="Most Occupied Window",show_copy_button = True)
-    btn_1.click(find_most_occupied_window, [target_date, target_facility_id])
+    btn_1.click(process1, [target_date, target_facility_id], outputs=output1)
+
 
 if __name__ == "__main__":
     app.launch()
