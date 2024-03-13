@@ -15,6 +15,7 @@ COPY data/ data/
 
 #Expose the port
 # EXPOSE 7860
+#
 
 # Set the entry point command
 CMD ["python", "src/main.py"]
