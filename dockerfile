@@ -1,7 +1,7 @@
 FROM python:3.12.1
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /code
 
 # Copy the requirements file
 COPY requirements.txt .
