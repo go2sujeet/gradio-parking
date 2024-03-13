@@ -2,6 +2,8 @@ from datetime import datetime
 import json
 from data_classes import Event, TimeWindow
 from utils import filter_event_by_date_facility_id, find_max_continuous_sequence, loadDataFromJson, twenty_four_hours_bucket_time_series_by_minute
+import gradio as gr
+from gradio_calendar import Calendar
 
 def find_most_occupied_window(target_date:datetime, target_facility_id:int):
     data = loadDataFromJson()
@@ -21,3 +23,17 @@ result = find_most_occupied_window(target_date, target_facility_id)
 print("Most number of slots at the same time is {}".format(result[1]))
 #problem 2
 print("Most occupied window is between {} and {} with {} occupied spots".format(result[0][0],result[0][1],result[1]))
+
+def greet(name):
+    return "Hello " + name + "!"
+
+with gr.Blocks() as app:
+    with gr.Group():
+        target_date = Calendar(label="Target Date", default_value=datetime.now())
+        target_facility_id = gr.Number(label="Facility ID")
+        btn_1 = gr.Button(value="Find Most Occupied Window")
+    output1 = gr.Text(label="Most Occupied Window",show_copy_button = True)
+    btn_1.click(find_most_occupied_window, [target_date, target_facility_id])
+
+if __name__ == "__main__":
+    app.launch()
